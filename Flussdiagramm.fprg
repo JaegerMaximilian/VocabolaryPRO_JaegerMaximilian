@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="Max"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-01-24 11:48:44 AM"/>
+        <attribute name="created" value="TWF4O0RFU0tUT1AtRkM3RDgwRTsyMDIyLTAxLTI0OzExOjI5OjUyIEFNOzI1NzI="/>
+        <attribute name="edited" value="TWF4O0RFU0tUT1AtRkM3RDgwRTsyMDIyLTAxLTI0OzExOjQ4OjQ0IEFNOzQ7MjY4NQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <call expression="Vokabeln vom CSV in Programm einlesen"/>
+            <if expression="Login(Wahr) oder Registrieren">
+                <then>
+                    <input variable="Login"/>
+                    <call expression="Login Daten vom CSV"/>
+                </then>
+                <else>
+                    <input variable="Registrieren"/>
+                    <declare name="User in CSV anlegen" type="String" array="False" size=""/>
+                </else>
+            </if>
+            <input variable="Switch: [1]Neue Vokabeln lernen [2] Vokabeln wiederholen [3] Statistiken"/>
+            <if expression="Vokabeln lernen">
+                <then>
+                    <call expression="Letztes gelerntes Vokabel suchen"/>
+                    <output expression="Die n&#228;chsten 5 Vokabeln anzeigen" newline="True"/>
+                    <input variable="Die 5 Vokabeln pr&#252;fen"/>
+                    <declare name="Letztes gelerntes Vokabel +5 in CSV speichern und Richtig/Falsche W&#246;rter Anzahl in CSV aktualisieren" type="Integer" array="False" size=""/>
+                </then>
+                <else>
+                    <if expression="Vokabeln Wiederholen">
+                        <then>
+                            <output expression="Von den Vokabeln VOR dem letzten gelernten Vokabel random 5 abfragen" newline="True"/>
+                            <input variable="die 5 Vokabeln abfragen"/>
+                            <declare name="Letztes gelerntes Vokabel +5 in CSV speichern und Richtig/Falsche W&#246;rter Anzahl in CSV aktualisieren" type="Integer" array="False" size=""/>
+                        </then>
+                        <else>
+                            <if expression="Statistiken">
+                                <then>
+                                    <output expression="Statistiken richtige und falsche W&#246;rter in % und Anzahl bereits gelernter W&#246;rter" newline="True"/>
+                                </then>
+                                <else>
+                                    <declare name="WIEDER RAUF ZUM SWITCH CASE" type="Integer" array="False" size=""/>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
